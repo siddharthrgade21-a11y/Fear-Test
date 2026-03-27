@@ -1,0 +1,35 @@
+let startBtn = document.getElementById("startBtn");
+let countdown = document.getElementById("countdown");
+let result = document.getElementById("result");
+
+startBtn.onclick = function () {
+
+    let time = 5;
+
+    let timer = setInterval(function () {
+        countdown.innerText = time;
+        time--;
+
+        if (time < 0) {
+            clearInterval(timer);
+
+            let startTime = new Date().getTime();
+
+            alert("CLICK FAST!");
+
+            document.body.onclick = function () {
+                let endTime = new Date().getTime();
+                let reaction = endTime - startTime;
+
+                result.innerText = "Your reaction time: " + reaction + " ms";
+
+                if (reaction < 300) {
+                    result.innerText += " - You are very brave!";
+                } else {
+                    result.innerText += " - You get scared easily!";
+                }
+            }
+        }
+
+    }, 1000);
+};
